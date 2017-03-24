@@ -4,8 +4,6 @@ import com.github.tothcs.ui.Presenter;
 
 public class NoteListPresenter extends Presenter<NoteListScreen> {
 
-    private static NoteListPresenter instance = null;
-
     public NoteListPresenter() {
 
     }

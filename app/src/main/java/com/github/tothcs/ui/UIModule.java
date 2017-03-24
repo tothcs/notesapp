@@ -2,6 +2,7 @@ package com.github.tothcs.ui;
 
 import android.content.Context;
 
+import com.github.tothcs.ui.addormodifynote.AddOrModifyNotePresenter;
 import com.github.tothcs.ui.notelist.NoteListPresenter;
 import com.github.tothcs.ui.notedetails.NoteDetailsPresenter;
 
@@ -25,12 +26,12 @@ public class UIModule {
 
     @Provides
     @Singleton
-    public NoteListPresenter provideMainPresenter() {
+    public NoteListPresenter provideNoteListPresenter() {
         return new NoteListPresenter();
     }
 
     @Provides
     @Singleton
-    public NoteDetailsPresenter provideDetailsPresenter() { return new NoteDetailsPresenter(); }
+    public NoteDetailsPresenter provideNoteDetailsPresenter() { return new NoteDetailsPresenter(); }
 
 }
