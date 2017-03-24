@@ -34,4 +34,8 @@ public class UIModule {
     @Singleton
     public NoteDetailsPresenter provideNoteDetailsPresenter() { return new NoteDetailsPresenter(); }
 
+    @Provides
+    @Singleton
+    public AddOrModifyNotePresenter provideAddOrModifyNotePresenter() { return new AddOrModifyNotePresenter(); }
+
 }
