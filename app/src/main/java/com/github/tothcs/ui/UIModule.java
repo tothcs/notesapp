@@ -3,6 +3,7 @@ package com.github.tothcs.ui;
 import android.content.Context;
 
 import com.github.tothcs.ui.main.MainPresenter;
+import com.github.tothcs.ui.notedetails.NoteDetailsPresenter;
 
 import javax.inject.Singleton;
 
@@ -27,5 +28,9 @@ public class UIModule {
     public MainPresenter provideMainPresenter() {
         return new MainPresenter();
     }
+
+    @Provides
+    @Singleton
+    public NoteDetailsPresenter provideDetailsPresenter() { return new NoteDetailsPresenter(); }
 
 }
