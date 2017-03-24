@@ -45,4 +45,4 @@ notifications:
     recipients:
     - csaba9308@gmail.com
     on_failure: always
-    on_success: always
+    on_success: change
