@@ -5,8 +5,11 @@ import com.github.tothcs.interactor.note.NotesInteractor;
 import com.github.tothcs.repository.RepositoryModule;
 import com.github.tothcs.ui.UIModule;
 import com.github.tothcs.ui.addormodifynote.AddOrModifyNoteActivity;
+import com.github.tothcs.ui.addormodifynote.AddOrModifyNotePresenter;
+import com.github.tothcs.ui.notedetails.NoteDetailsPresenter;
 import com.github.tothcs.ui.notelist.NoteListActivity;
 import com.github.tothcs.ui.notedetails.NoteDetailsActivity;
+import com.github.tothcs.ui.notelist.NoteListPresenter;
 
 import javax.inject.Singleton;
 
@@ -24,4 +27,10 @@ public interface NotesApplicationComponent {
     void inject(NotesInteractor notesInteractor);
 
     void inject(NotesApplication notesApplication);
+
+    void inject (NoteListPresenter noteListPresenter);
+
+    void inject (NoteDetailsPresenter noteDetailsPresenter);
+
+    void inject (AddOrModifyNotePresenter addOrModifyNotePresenter);
 }
