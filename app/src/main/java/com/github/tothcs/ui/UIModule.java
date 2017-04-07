@@ -10,6 +10,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import de.greenrobot.event.EventBus;
 
 @Module
 public class UIModule {
@@ -37,5 +38,12 @@ public class UIModule {
     @Provides
     @Singleton
     public AddOrModifyNotePresenter provideAddOrModifyNotePresenter() { return new AddOrModifyNotePresenter(); }
+
+    @Provides
+    @Singleton
+    public EventBus provideEventBus() {
+        return EventBus.getDefault();
+    }
+
 
 }
