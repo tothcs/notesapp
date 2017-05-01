@@ -1,4 +1,4 @@
-package com.github.tothcs.model.network;
+package com.github.tothcs.network.note;
 
 import java.util.Objects;
 import io.swagger.annotations.ApiModel;

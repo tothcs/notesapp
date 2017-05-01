@@ -1,20 +1,12 @@
 package com.github.tothcs.network.note;
 
-import io.swagger.client.CollectionFormats.*;
-
-
 import retrofit2.Call;
-import retrofit2.http.*;
-
-import okhttp3.RequestBody;
-
-import io.swagger.client.model.NotesReply;
-import io.swagger.client.model.Note;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import retrofit2.http.Body;
+import retrofit2.http.DELETE;
+import retrofit2.http.GET;
+import retrofit2.http.POST;
+import retrofit2.http.PUT;
+import retrofit2.http.Path;
 
 public interface NoteApi {
   

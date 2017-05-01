@@ -1,13 +1,13 @@
-package com.github.tothcs.model.network;
-
-import java.util.Objects;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import io.swagger.client.model.Note;
-import java.util.ArrayList;
-import java.util.List;
+package com.github.tothcs.network.note;
 
 import com.google.gson.annotations.SerializedName;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 
 
