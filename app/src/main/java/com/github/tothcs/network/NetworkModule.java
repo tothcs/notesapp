@@ -36,7 +36,7 @@ public class NetworkModule {
 
     @Provides
     @Singleton
-    public NoteApi provideANoteApi(Retrofit retrofit) {
+    public NoteApi provideNoteApi(Retrofit retrofit) {
         return retrofit.create(NoteApi.class);
     }
 }
