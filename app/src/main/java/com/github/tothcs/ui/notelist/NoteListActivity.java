@@ -3,6 +3,7 @@ package com.github.tothcs.ui.notelist;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import com.github.tothcs.NotesApplication;
@@ -12,12 +13,12 @@ import com.github.tothcs.ui.addormodifynote.AddOrModifyNoteActivity;
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class NoteListActivity extends AppCompatActivity implements NoteListScreen {
 
     @Inject
     NoteListPresenter noteListPresenter;
+
 
     private static final String IS_MODIFY_NOTE = "IS_MODIFY";
 
@@ -42,8 +43,7 @@ public class NoteListActivity extends AppCompatActivity implements NoteListScree
         noteListPresenter.detachScreen();
     }
 
-    @OnClick(R.id.create_new_note_fab)
-    public void onAddNewNoteButtonClick() {
+    public void onAddNewNoteButtonClick(View view) {
         Intent intent = new Intent(this, AddOrModifyNoteActivity.class);
         intent.putExtra(IS_MODIFY_NOTE, false);
         startActivity(intent);

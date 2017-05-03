@@ -45,10 +45,11 @@ public class AddOrModifyNotePresenter extends Presenter<AddOrModifyNoteScreen> {
         super.detachScreen();
     }
 
-    public void updateNote() {
-        // TODO: read note data from inputs
-        final Note note = new Note(1L, "title", "description", Category.PERSONAL, Priority.NORMAL);
+    public void getNoteById(long id) {
 
+    }
+
+    public void updateNote(final Note note) {
         executor.execute(new Runnable() {
             @Override
             public void run() {
@@ -57,10 +58,7 @@ public class AddOrModifyNotePresenter extends Presenter<AddOrModifyNoteScreen> {
         });
     }
 
-    public void saveNote() {
-        // TODO: read note data from inputs
-        final Note note = new Note(1L, "title", "description", Category.PERSONAL, Priority.NORMAL);
-
+    public void saveNote(final Note note) {
         executor.execute(new Runnable() {
             @Override
             public void run() {
@@ -77,7 +75,7 @@ public class AddOrModifyNotePresenter extends Presenter<AddOrModifyNoteScreen> {
                 screen.showMessage("error");
             }
         } else {
-            // TODO
+            screen.navigateToNoteList();
         }
     }
 
@@ -89,7 +87,7 @@ public class AddOrModifyNotePresenter extends Presenter<AddOrModifyNoteScreen> {
                 screen.showMessage("error");
             }
         } else {
-            // TODO
+            screen.navigateToNoteList();
         }
     }
 }
