@@ -1,13 +1,51 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_add_or_modify_note"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.github.tothcs.ui.addormodifynote.AddOrModifyNoteActivity">
+    tools:context="com.github.tothcs.ui.addormodifynote.AddOrModifyNoteActivity"
+    android:orientation="vertical">
 
-</RelativeLayout>
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/input_horizontal_padding"
+        android:paddingRight="@dimen/input_horizontal_padding"
+        android:paddingTop="@dimen/input_vertical_padding"
+        android:paddingBottom="@dimen/input_vertical_padding">
+
+        <com.devspark.robototextview.widget.RobotoEditText
+            android:id="@+id/name_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:textSize="32sp"
+            android:hint="@string/create_note_title_hint" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/input_horizontal_padding"
+        android:paddingRight="@dimen/input_horizontal_padding"
+        android:paddingTop="@dimen/input_vertical_padding"
+        android:paddingBottom="@dimen/input_vertical_padding">
+
+        <com.devspark.robototextview.widget.RobotoEditText
+            android:id="@+id/description_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:inputType="textMultiLine"
+            android:hint="@string/create_note_description_hint" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <com.devspark.robototextview.widget.RobotoButton
+        android:id="@+id/save_created_todo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/input_horizontal_padding"
+        android:paddingRight="@dimen/input_horizontal_padding"
+        android:text="@string/create_note_button_text"/>
+
+</LinearLayout>

@@ -6,6 +6,8 @@ import com.github.tothcs.ui.addormodifynote.AddOrModifyNotePresenter;
 import com.github.tothcs.ui.notelist.NoteListPresenter;
 import com.github.tothcs.ui.notedetails.NoteDetailsPresenter;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -13,7 +15,6 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import de.greenrobot.event.EventBus;
 
 @Module
 public class UIModule {

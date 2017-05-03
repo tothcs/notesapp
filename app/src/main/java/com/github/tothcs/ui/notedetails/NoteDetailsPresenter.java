@@ -10,11 +10,13 @@ import com.github.tothcs.model.Note;
 import com.github.tothcs.ui.Presenter;
 import com.github.tothcs.ui.notelist.NoteListScreen;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.concurrent.Executor;
 
 import javax.inject.Inject;
-
-import de.greenrobot.event.EventBus;
 
 public class NoteDetailsPresenter extends Presenter<NoteDetailsScreen> {
 
@@ -49,6 +51,7 @@ public class NoteDetailsPresenter extends Presenter<NoteDetailsScreen> {
         });
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onGetNoteByIdEvent(GetNoteByIdEvent event) {
         if (event.getThrowable() != null) {
             event.getThrowable().printStackTrace();

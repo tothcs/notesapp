@@ -10,11 +10,13 @@ import com.github.tothcs.interactor.note.events.RemoveNoteEvent;
 import com.github.tothcs.model.Note;
 import com.github.tothcs.ui.Presenter;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.concurrent.Executor;
 
 import javax.inject.Inject;
-
-import de.greenrobot.event.EventBus;
 
 public class NoteListPresenter extends Presenter<NoteListScreen> {
 
@@ -58,6 +60,7 @@ public class NoteListPresenter extends Presenter<NoteListScreen> {
         });
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onRemoteNoteEvent(RemoveNoteEvent event) {
         if (event.getThrowable() != null) {
             event.getThrowable().printStackTrace();
@@ -69,6 +72,7 @@ public class NoteListPresenter extends Presenter<NoteListScreen> {
         }
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onGetNotesEvent(GetNotesEvent event) {
         if (event.getThrowable() != null) {
             event.getThrowable().printStackTrace();

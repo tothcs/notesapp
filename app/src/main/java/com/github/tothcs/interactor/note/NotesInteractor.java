@@ -9,11 +9,11 @@ import com.github.tothcs.interactor.note.events.UpdateNoteEvent;
 import com.github.tothcs.model.Note;
 import com.github.tothcs.repository.Repository;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.List;
 
 import javax.inject.Inject;
-
-import de.greenrobot.event.EventBus;
 
 public class NotesInteractor {
 
