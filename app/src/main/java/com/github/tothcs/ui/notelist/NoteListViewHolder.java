@@ -27,6 +27,7 @@ public class NoteListViewHolder extends RecyclerView.ViewHolder {
 
     public void setTodoListItem(Note noteItem) {
         this.noteItem = noteItem;
+        noteTitle.setText(noteItem.getTitle());
         //todoTitle.setText(todoListItem.getName());
         //todoStartDate.setText(new DateTime(todoListItem.getStartingDate()).toString(DateTimeHelper.getShortFormatter()));
     }

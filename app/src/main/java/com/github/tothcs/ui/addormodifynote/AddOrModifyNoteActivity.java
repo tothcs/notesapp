@@ -16,11 +16,16 @@ import com.github.tothcs.ui.notelist.NoteListActivity;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class AddOrModifyNoteActivity extends AppCompatActivity implements AddOrModifyNoteScreen {
 
+    @BindView(R.id.title_edit_text)
+    EditText titleEditText;
 
+    @BindView(R.id.description_edit_text)
+    EditText descriptionEditText;
 
     @Inject
     AddOrModifyNotePresenter addOrModifyNotePresenter;
@@ -47,10 +52,11 @@ public class AddOrModifyNoteActivity extends AppCompatActivity implements AddOrM
     }
 
     public void onSaveNoteButtonClick(View view) {
-
-        new Note(1L, "title", "description", Category.PERSONAL, Priority.NORMAL);
+        Note note = new Note(1L, titleEditText.getText().toString(), descriptionEditText.getText().toString(), Category.PERSONAL, Priority.NORMAL);
+        addOrModifyNotePresenter.saveNote(note);
     }
 
+    @Override
     public void navigateToNoteList() {
         startActivity(new Intent(this, NoteListActivity.class));
     }

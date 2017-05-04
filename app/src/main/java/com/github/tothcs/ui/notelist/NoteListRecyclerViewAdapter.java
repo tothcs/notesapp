@@ -39,6 +39,6 @@ public class NoteListRecyclerViewAdapter extends RecyclerView.Adapter<NoteListVi
 
     public void refreshTodoList(List<Note> noteList) {
         this.noteList = noteList;
-        notifyDataSetChanged();
+        super.notifyDataSetChanged();
     }
 }
