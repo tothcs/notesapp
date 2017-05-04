@@ -1,9 +1,8 @@
 package com.github.tothcs.model;
 
-import com.orm.dsl.Table;
+import com.orm.SugarRecord;
 
-@Table
-public class Note {
+public class Note extends SugarRecord {
     private Long id = null;
     private String title;
     private String description;

@@ -53,7 +53,6 @@ public class NoteListActivity extends AppCompatActivity implements NoteListScree
     protected void onStart() {
         super.onStart();
         noteListPresenter.attachScreen(this);
-        noteListPresenter.getNotes();
     }
 
     @Override

@@ -61,14 +61,14 @@ public class NoteListPresenter extends Presenter<NoteListScreen> {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onRemoteNoteEvent(RemoveNoteEvent event) {
+    public void onRemoveNoteEvent(RemoveNoteEvent event) {
         if (event.getThrowable() != null) {
             event.getThrowable().printStackTrace();
             if (screen != null) {
                 screen.showMessage("error");
             }
         } else {
-            // TODO
+            getNotes();
         }
     }
 
@@ -81,9 +81,7 @@ public class NoteListPresenter extends Presenter<NoteListScreen> {
             }
         } else {
             if (screen != null) {
-                for(Note note : event.getNotes()){
-                    screen.showMessage(note.getTitle());
-                }
+                screen.updateNotes(event.getNotes());
             }
         }
     }
