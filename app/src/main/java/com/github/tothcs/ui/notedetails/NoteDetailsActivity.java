@@ -11,7 +11,6 @@ import com.github.tothcs.R;
 import com.github.tothcs.model.Note;
 
 import javax.inject.Inject;
-import javax.security.auth.callback.UnsupportedCallbackException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -60,7 +59,7 @@ public class NoteDetailsActivity extends AppCompatActivity implements NoteDetail
 
     @Override
     public void showNote(Note note) {
-        noteTitle.setText(note.getTitle());
+        noteTitle.setText(note.getTitle() + "(" + note.getPriority().toString() + ")");
         noteDescription.setText(note.getDescription());
         switch(note.getCategory()) {
             case PERSONAL:

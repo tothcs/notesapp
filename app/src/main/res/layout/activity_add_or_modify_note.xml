@@ -8,10 +8,7 @@
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/input_horizontal_padding"
-        android:paddingRight="@dimen/input_horizontal_padding"
-        android:paddingTop="@dimen/input_vertical_padding"
-        android:paddingBottom="@dimen/input_vertical_padding">
+        android:layout_margin="16dp">
 
         <com.devspark.robototextview.widget.RobotoEditText
             android:id="@+id/title_edit_text"
@@ -26,10 +23,7 @@
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/input_horizontal_padding"
-        android:paddingRight="@dimen/input_horizontal_padding"
-        android:paddingTop="@dimen/input_vertical_padding"
-        android:paddingBottom="@dimen/input_vertical_padding">
+        android:layout_margin="16dp">
 
         <com.devspark.robototextview.widget.RobotoEditText
             android:id="@+id/description_edit_text"
@@ -43,12 +37,14 @@
     <Spinner
         android:id="@+id/category_spinner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"/>
 
     <Spinner
         android:id="@+id/priority_spinner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"/>
 
     <com.devspark.robototextview.widget.RobotoButton
         android:id="@+id/save_note_button"
