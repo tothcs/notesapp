@@ -25,6 +25,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class NoteListActivity extends AppCompatActivity implements NoteListScreen {
 
@@ -72,7 +73,8 @@ public class NoteListActivity extends AppCompatActivity implements NoteListScree
         noteListPresenter.detachScreen();
     }
 
-    public void onAddNewNoteButtonClick(View view) {
+    @OnClick(R.id.create_new_note_fab)
+    public void onAddNewNoteButtonClick() {
         Intent intent = new Intent(this, AddOrModifyNoteActivity.class);
         intent.putExtra(IS_MODIFY_NOTE, false);
         startActivity(intent);
@@ -93,15 +95,20 @@ public class NoteListActivity extends AppCompatActivity implements NoteListScree
         if (NoteItemAction.DELETE.equals(event.getAction())) {
             noteListPresenter.removeNote(event.getNoteId());
         } else {
-            Intent intent;
-            if (NoteItemAction.MODIFY.equals(event.getAction())) {
-                intent = new Intent(this, AddOrModifyNoteActivity.class);
-                intent.putExtra("IS_MODIFY", true);
-            } else {
-                intent = new Intent(this, NoteDetailsActivity.class);
-            }
-            intent.putExtra("NOTE_ID", event.getNoteId());
-            startActivity(intent);
+            startActivity(NoteItemAction.MODIFY.equals(event.getAction()) ? createModifyActivityIntent(event.getNoteId()) : createDisplayActivityIntent(event.getNoteId()));
         }
+    }
+
+    private Intent createModifyActivityIntent(Long noteId) {
+        Intent intent = new Intent(this, AddOrModifyNoteActivity.class);
+        intent.putExtra("IS_MODIFY", true);
+        intent.putExtra("NOTE_ID", noteId);
+        return intent;
+    }
+
+    private Intent createDisplayActivityIntent(Long noteId) {
+        Intent intent = new Intent(this, NoteDetailsActivity.class);
+        intent.putExtra("NOTE_ID", noteId);
+        return intent;
     }
 }

@@ -2,7 +2,7 @@
 android:layout_width="match_parent" android:layout_height="80dp">
 <!-- Bottom View Start-->
 <LinearLayout
-    android:background="#CCCCCC"
+    android:background="#DDDDDD"
     android:orientation="horizontal"
     android:id="@+id/bottom_wrapper"
     android:layout_width="match_parent"
@@ -32,17 +32,19 @@ android:layout_width="match_parent" android:layout_height="80dp">
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <!--What you want to show in SurfaceView-->
-    <!--<com.devspark.robototextview.widget.RobotoTextView
-        android:id="@+id/"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
-        android:textAppearance="?attr/textAppearanceListItem" />-->
+
+    <ImageView
+        android:id="@+id/note_list_item_priority_image"
+        android:layout_width="32dp"
+        android:layout_margin="16dp"
+        android:layout_height="match_parent" />
 
     <com.devspark.robototextview.widget.RobotoTextView
         android:id="@+id/note_list_item_title"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textSize="24sp"
         android:layout_margin="@dimen/text_margin"
         android:textAppearance="?attr/textAppearanceListItem" />
     </LinearLayout>

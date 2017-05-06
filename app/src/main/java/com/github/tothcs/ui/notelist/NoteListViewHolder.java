@@ -2,6 +2,7 @@ package com.github.tothcs.ui.notelist;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.tothcs.NotesApplication;
@@ -23,6 +24,9 @@ public class NoteListViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.note_list_item_title)
     TextView noteTitle;
 
+    @BindView(R.id.note_list_item_priority_image)
+    ImageView notePriorityImage;
+
     @Inject
     EventBus bus;
 
@@ -37,8 +41,19 @@ public class NoteListViewHolder extends RecyclerView.ViewHolder {
     public void setTodoListItem(Note noteItem) {
         this.noteItem = noteItem;
         noteTitle.setText(noteItem.getTitle());
-        //todoTitle.setText(todoListItem.getName());
-        //todoStartDate.setText(new DateTime(todoListItem.getStartingDate()).toString(DateTimeHelper.getShortFormatter()));
+        switch(noteItem.getPriority()) {
+            case LOW:
+                notePriorityImage.setImageResource(R.drawable.ic_keyboard_arrow_down_black_24dp);
+                break;
+            case NORMAL:
+                notePriorityImage.setImageResource(R.drawable.ic_keyboard_arrow_up_black_24dp);
+                break;
+            case HIGH:
+                notePriorityImage.setImageResource(R.drawable.ic_priority_high_black_24dp);
+                break;
+            default:
+                throw new UnsupportedOperationException();
+        }
     }
 
     @OnClick(R.id.note_list_item)
