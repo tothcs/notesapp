@@ -40,7 +40,7 @@ public class SugarOrmRepository implements Repository {
     }
 
     @Override
-    public void removeNote(Note note) {
-        SugarRecord.deleteInTx(note);
+    public void removeNote(Long noteId) {
+        SugarRecord.deleteInTx(SugarRecord.findById(Note.class, noteId));
     }
 }

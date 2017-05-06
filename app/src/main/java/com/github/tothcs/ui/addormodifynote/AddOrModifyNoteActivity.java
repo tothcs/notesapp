@@ -43,6 +43,10 @@ public class AddOrModifyNoteActivity extends AppCompatActivity implements AddOrM
     protected void onStart() {
         super.onStart();
         addOrModifyNotePresenter.attachScreen(this);
+        Bundle bundle = getIntent().getExtras();
+        if (bundle.getBoolean("IS_MODIFY")) {
+            addOrModifyNotePresenter.getNoteById(bundle.getLong("NOTE_ID"));
+        }
     }
 
     @Override
@@ -64,5 +68,11 @@ public class AddOrModifyNoteActivity extends AppCompatActivity implements AddOrM
     @Override
     public void showMessage(String text) {
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showNote(Note note) {
+        titleEditText.setText(note.getTitle());
+        descriptionEditText.setText(note.getDescription());
     }
 }

@@ -51,11 +51,11 @@ public class NoteListPresenter extends Presenter<NoteListScreen> {
         });
     }
 
-    public void removeNote(final Note note) {
+    public void removeNote(final Long noteId) {
         executor.execute(new Runnable() {
             @Override
             public void run() {
-                notesInteractor.removeNote(note);
+                notesInteractor.removeNote(noteId);
             }
         });
     }

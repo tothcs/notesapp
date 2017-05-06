@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.github.tothcs.NotesApplication;
 import com.github.tothcs.interactor.note.NotesInteractor;
+import com.github.tothcs.interactor.note.events.GetNoteByIdEvent;
 import com.github.tothcs.interactor.note.events.GetNotesEvent;
 import com.github.tothcs.interactor.note.events.SaveNoteEvent;
 import com.github.tothcs.interactor.note.events.UpdateNoteEvent;
@@ -45,8 +46,13 @@ public class AddOrModifyNotePresenter extends Presenter<AddOrModifyNoteScreen> {
         super.detachScreen();
     }
 
-    public void getNoteById(long id) {
-
+    public void getNoteById(final Long id) {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                notesInteractor.getNoteById(id);
+            }
+        });
     }
 
     public void updateNote(final Note note) {
@@ -88,6 +94,18 @@ public class AddOrModifyNotePresenter extends Presenter<AddOrModifyNoteScreen> {
             }
         } else {
             screen.navigateToNoteList();
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onGetNoteByIdEvent(GetNoteByIdEvent event) {
+        if (event.getThrowable() != null) {
+            event.getThrowable().printStackTrace();
+            if (screen != null) {
+                screen.showMessage("error");
+            }
+        } else {
+            screen.showNote(event.getNote());
         }
     }
 }

@@ -55,7 +55,7 @@ public class MemoryRepository implements Repository {
     }
 
     @Override
-    public void removeNote(Note note) {
-        notes.remove(note);
+    public void removeNote(Long noteId) {
+        notes.remove(findNoteIndexById(noteId));
     }
 }

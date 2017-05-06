@@ -1,16 +1,43 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.daimajia.swipe.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent" android:layout_height="80dp">
+<!-- Bottom View Start-->
+<LinearLayout
+    android:background="#CCCCCC"
+    android:orientation="horizontal"
+    android:id="@+id/bottom_wrapper"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="16dp"
-    android:orientation="horizontal">
+    android:weightSum="2"
+    android:layout_height="match_parent">
+    <!--What you want to show-->
+    <com.devspark.robototextview.widget.RobotoButton
+        android:layout_weight="1"
+        android:id="@+id/note_list_modify_item"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:text="Modify"/>
+    <com.devspark.robototextview.widget.RobotoButton
+        android:id="@+id/note_list_delete_item"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:text="Delete"/>
 
-    <com.devspark.robototextview.widget.RobotoTextView
-        android:id="@+id/todo_list_item_start_date"
+</LinearLayout>
+<!-- Bottom View End-->
+
+<!-- Surface View Start -->
+<LinearLayout
+    android:id="@+id/note_list_item"
+    android:background="#ffffff"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!--What you want to show in SurfaceView-->
+    <!--<com.devspark.robototextview.widget.RobotoTextView
+        android:id="@+id/"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/text_margin"
-        android:textAppearance="?attr/textAppearanceListItem" />
+        android:textAppearance="?attr/textAppearanceListItem" />-->
 
     <com.devspark.robototextview.widget.RobotoTextView
         android:id="@+id/note_list_item_title"
@@ -18,5 +45,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/text_margin"
         android:textAppearance="?attr/textAppearanceListItem" />
-
-</LinearLayout>
+    </LinearLayout>
+<!-- Surface View End -->
+</com.daimajia.swipe.SwipeLayout>

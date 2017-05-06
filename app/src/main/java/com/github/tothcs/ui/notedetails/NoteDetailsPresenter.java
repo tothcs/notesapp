@@ -59,7 +59,7 @@ public class NoteDetailsPresenter extends Presenter<NoteDetailsScreen> {
                 screen.showMessage("error");
             }
         } else {
-            // TODO: show note data
+            screen.showNote(event.getNote());
         }
     }
 }

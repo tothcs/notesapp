@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import com.github.tothcs.NotesApplication;
 import com.github.tothcs.R;
+import com.github.tothcs.model.Note;
 
 import javax.inject.Inject;
 
@@ -26,6 +27,8 @@ public class NoteDetailsActivity extends AppCompatActivity implements NoteDetail
     protected void onStart() {
         super.onStart();
         noteDetailsPresenter.attachScreen(this);
+        Bundle bundle = getIntent().getExtras();
+        noteDetailsPresenter.getNoteById(bundle.getLong("NOTE_ID"));
     }
 
     @Override
@@ -37,5 +40,10 @@ public class NoteDetailsActivity extends AppCompatActivity implements NoteDetail
     @Override
     public void showMessage(String text) {
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showNote(Note note) {
+
     }
 }

@@ -70,10 +70,10 @@ public class NotesInteractor {
         }
     }
 
-    public void removeNote(Note note) {
+    public void removeNote(Long noteId) {
         RemoveNoteEvent event = new RemoveNoteEvent();
         try {
-            repository.removeNote(note);
+            repository.removeNote(noteId);
             bus.post(event);
         } catch (Exception e) {
             event.setThrowable(e);

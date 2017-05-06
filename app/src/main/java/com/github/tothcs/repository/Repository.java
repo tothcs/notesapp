@@ -19,5 +19,5 @@ public interface Repository {
 
     void updateNote(Note note);
 
-    void removeNote(Note note);
+    void removeNote(Long noteId);
 }

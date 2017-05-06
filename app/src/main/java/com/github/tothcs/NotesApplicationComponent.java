@@ -10,6 +10,7 @@ import com.github.tothcs.ui.notedetails.NoteDetailsPresenter;
 import com.github.tothcs.ui.notelist.NoteListActivity;
 import com.github.tothcs.ui.notedetails.NoteDetailsActivity;
 import com.github.tothcs.ui.notelist.NoteListPresenter;
+import com.github.tothcs.ui.notelist.NoteListViewHolder;
 
 import javax.inject.Singleton;
 
@@ -33,4 +34,6 @@ public interface NotesApplicationComponent {
     void inject (NoteDetailsPresenter noteDetailsPresenter);
 
     void inject (AddOrModifyNotePresenter addOrModifyNotePresenter);
+
+    void inject (NoteListViewHolder noteListViewHolder);
 }

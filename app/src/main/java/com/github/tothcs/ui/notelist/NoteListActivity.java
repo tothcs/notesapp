@@ -11,6 +11,13 @@ import com.github.tothcs.NotesApplication;
 import com.github.tothcs.R;
 import com.github.tothcs.model.Note;
 import com.github.tothcs.ui.addormodifynote.AddOrModifyNoteActivity;
+import com.github.tothcs.ui.events.NoteItemAction;
+import com.github.tothcs.ui.events.NoteItemActionEvent;
+import com.github.tothcs.ui.notedetails.NoteDetailsActivity;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
 
@@ -23,6 +30,9 @@ public class NoteListActivity extends AppCompatActivity implements NoteListScree
 
     @Inject
     NoteListPresenter noteListPresenter;
+
+    @Inject
+    EventBus bus;
 
     @BindView(R.id.note_list)
     RecyclerView recyclerView;
@@ -38,6 +48,7 @@ public class NoteListActivity extends AppCompatActivity implements NoteListScree
 
         NotesApplication.injector.inject(this);
         ButterKnife.bind(this);
+        bus.register(this);
 
         noteListRecyclerViewAdapter = new NoteListRecyclerViewAdapter(null, false);
         recyclerView.setAdapter(noteListRecyclerViewAdapter);
@@ -75,5 +86,22 @@ public class NoteListActivity extends AppCompatActivity implements NoteListScree
     @Override
     public void updateNotes(List<Note> noteList) {
         noteListRecyclerViewAdapter.refreshTodoList(noteList);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onNoteItemActionEvent(NoteItemActionEvent event) {
+        if (NoteItemAction.DELETE.equals(event.getAction())) {
+            noteListPresenter.removeNote(event.getNoteId());
+        } else {
+            Intent intent = null;
+            if (NoteItemAction.MODIFY.equals(event.getAction())) {
+                intent = new Intent(this, AddOrModifyNoteActivity.class);
+                intent.putExtra("IS_MODIFY", true);
+            } else {
+                intent = new Intent(this, NoteDetailsActivity.class);
+            }
+            intent.putExtra("NOTE_ID", event.getNoteId());
+            startActivity(intent);
+        }
     }
 }
