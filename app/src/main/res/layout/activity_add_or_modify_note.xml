@@ -40,13 +40,22 @@
 
     </android.support.design.widget.TextInputLayout>
 
+    <Spinner
+        android:id="@+id/category_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Spinner
+        android:id="@+id/priority_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <com.devspark.robototextview.widget.RobotoButton
-        android:id="@+id/save_created_todo"
+        android:id="@+id/save_note_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/input_horizontal_padding"
         android:paddingRight="@dimen/input_horizontal_padding"
-        android:text="@string/create_note_button_text"
-        android:onClick="onSaveNoteButtonClick"/>
+        android:text="@string/create_note_button_text"/>
 
 </LinearLayout>

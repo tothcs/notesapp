@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.github.tothcs.NotesApplication;
@@ -18,6 +20,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class AddOrModifyNoteActivity extends AppCompatActivity implements AddOrModifyNoteScreen {
 
@@ -26,6 +29,12 @@ public class AddOrModifyNoteActivity extends AppCompatActivity implements AddOrM
 
     @BindView(R.id.description_edit_text)
     EditText descriptionEditText;
+
+    @BindView(R.id.category_spinner)
+    Spinner categorySpinner;
+
+    @BindView(R.id.priority_spinner)
+    Spinner prioritySpinner;
 
     @Inject
     AddOrModifyNotePresenter addOrModifyNotePresenter;
@@ -37,6 +46,9 @@ public class AddOrModifyNoteActivity extends AppCompatActivity implements AddOrM
 
         NotesApplication.injector.inject(this);
         ButterKnife.bind(this);
+
+        categorySpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, Category.values()));
+        prioritySpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, Priority.values()));
     }
 
     @Override
@@ -55,8 +67,10 @@ public class AddOrModifyNoteActivity extends AppCompatActivity implements AddOrM
         addOrModifyNotePresenter.detachScreen();
     }
 
-    public void onSaveNoteButtonClick(View view) {
-        Note note = new Note(1L, titleEditText.getText().toString(), descriptionEditText.getText().toString(), Category.PERSONAL, Priority.NORMAL);
+    @OnClick(R.id.save_note_button)
+    public void onSaveNoteButtonClick() {
+        Note note = new Note(titleEditText.getText().toString(), descriptionEditText.getText().toString(),
+                (Category) categorySpinner.getSelectedItem(), (Priority) prioritySpinner.getSelectedItem());
         addOrModifyNotePresenter.saveNote(note);
     }
 

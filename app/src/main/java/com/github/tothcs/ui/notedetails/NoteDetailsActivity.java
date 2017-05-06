@@ -2,6 +2,8 @@ package com.github.tothcs.ui.notedetails;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.tothcs.NotesApplication;
@@ -9,11 +11,24 @@ import com.github.tothcs.R;
 import com.github.tothcs.model.Note;
 
 import javax.inject.Inject;
+import javax.security.auth.callback.UnsupportedCallbackException;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class NoteDetailsActivity extends AppCompatActivity implements NoteDetailsScreen {
 
     @Inject
     NoteDetailsPresenter noteDetailsPresenter;
+
+    @BindView(R.id.note_details_category_image)
+    ImageView noteCategoryImage;
+
+    @BindView(R.id.note_details_title)
+    TextView noteTitle;
+
+    @BindView(R.id.note_details_description)
+    TextView noteDescription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +36,7 @@ public class NoteDetailsActivity extends AppCompatActivity implements NoteDetail
         setContentView(R.layout.activity_note_details);
 
         NotesApplication.injector.inject(this);
+        ButterKnife.bind(this);
     }
 
     @Override
@@ -44,6 +60,20 @@ public class NoteDetailsActivity extends AppCompatActivity implements NoteDetail
 
     @Override
     public void showNote(Note note) {
-
+        noteTitle.setText(note.getTitle());
+        noteDescription.setText(note.getDescription());
+        switch(note.getCategory()) {
+            case PERSONAL:
+                noteCategoryImage.setImageResource(R.drawable.personal);
+                break;
+            case STUDY:
+                noteCategoryImage.setImageResource(R.drawable.study);
+                break;
+            case WORK:
+                noteCategoryImage.setImageResource(R.drawable.work);
+                break;
+            default:
+                throw new UnsupportedOperationException();
+        }
     }
 }
