@@ -1,18 +1,12 @@
 package com.github.tothcs.ui.addormodifynote;
 
-import android.util.Log;
-
 import com.github.tothcs.NotesApplication;
 import com.github.tothcs.interactor.note.NotesInteractor;
 import com.github.tothcs.interactor.note.events.GetNoteByIdEvent;
-import com.github.tothcs.interactor.note.events.GetNotesEvent;
 import com.github.tothcs.interactor.note.events.SaveNoteEvent;
 import com.github.tothcs.interactor.note.events.UpdateNoteEvent;
-import com.github.tothcs.model.Category;
 import com.github.tothcs.model.Note;
-import com.github.tothcs.model.Priority;
 import com.github.tothcs.ui.Presenter;
-import com.github.tothcs.ui.notedetails.NoteDetailsScreen;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;

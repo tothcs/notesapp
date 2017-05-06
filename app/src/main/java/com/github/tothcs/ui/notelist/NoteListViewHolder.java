@@ -27,13 +27,11 @@ public class NoteListViewHolder extends RecyclerView.ViewHolder {
     EventBus bus;
 
     private Note noteItem;
-    private View view;
 
     public NoteListViewHolder(View view) {
         super(view);
         ButterKnife.bind(this, view);
         NotesApplication.injector.inject(this);
-        this.view = view;
     }
 
     public void setTodoListItem(Note noteItem) {

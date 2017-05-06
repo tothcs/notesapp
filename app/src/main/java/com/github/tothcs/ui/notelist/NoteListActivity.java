@@ -93,7 +93,7 @@ public class NoteListActivity extends AppCompatActivity implements NoteListScree
         if (NoteItemAction.DELETE.equals(event.getAction())) {
             noteListPresenter.removeNote(event.getNoteId());
         } else {
-            Intent intent = null;
+            Intent intent;
             if (NoteItemAction.MODIFY.equals(event.getAction())) {
                 intent = new Intent(this, AddOrModifyNoteActivity.class);
                 intent.putExtra("IS_MODIFY", true);

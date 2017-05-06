@@ -11,8 +11,6 @@ import com.github.tothcs.repository.Repository;
 
 import org.greenrobot.eventbus.EventBus;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
 public class NotesInteractor {

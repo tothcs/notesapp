@@ -3,7 +3,6 @@ package com.github.tothcs.mock.interceptors;
 import android.net.Uri;
 
 import com.github.tothcs.network.NetworkConfig;
-import com.github.tothcs.utils.GsonHelper;
 
 import okhttp3.Headers;
 import okhttp3.Request;

@@ -13,11 +13,9 @@ import java.util.List;
 public class NoteListRecyclerViewAdapter extends RecyclerView.Adapter<NoteListViewHolder> {
 
     private List<Note> noteList;
-    private boolean isTwoPane;
 
     public NoteListRecyclerViewAdapter(List<Note> noteList, boolean isTwoPane) {
         this.noteList = noteList;
-        this.isTwoPane = isTwoPane;
     }
 
     @Override

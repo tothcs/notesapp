@@ -47,7 +47,7 @@ public class MemoryRepository implements Repository {
 
     @Override
     public void updateNote(Note note) {
-        this.notes.set(findNoteIndexById(note.getId()), note);
+        notes.set(findNoteIndexById(note.getId()), note);
     }
 
     private int findNoteIndexById(Long id) {
