@@ -8,7 +8,7 @@ android {
     buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "com.github.tothc"
-        minSdkVersion 19
+        minSdkVersion 15
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -39,7 +39,6 @@ dependencies {
     compile 'com.android.support:support-v4:25.3.1'
     compile 'com.android.support:recyclerview-v7:25.3.1'
     compile 'com.android.support:design:25.3.1'
-    testCompile 'junit:junit:4.12'
 
     // Dagger 2 and Compiler
     compile "com.google.dagger:dagger-compiler:2.0.1"
@@ -64,4 +63,17 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.4.0'
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
     compile "com.daimajia.swipelayout:library:1.2.0@aar"
+
+    //JUnit
+    testCompile 'junit:junit:4.12'
+
+    //Robolectric
+    testCompile('org.robolectric:shadows-support-v4:3.0-rc3') {
+        exclude group: 'commons-logging', module: 'commons-logging'
+        exclude group: 'org.apache.httpcomponents', module: 'httpclient'
+    }
+
+    //Mockito
+    testCompile "org.mockito:mockito-core:1.10.19"
+
 }
