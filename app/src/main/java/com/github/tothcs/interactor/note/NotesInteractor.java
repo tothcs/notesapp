@@ -7,6 +7,7 @@ import com.github.tothcs.interactor.note.events.RemoveNoteEvent;
 import com.github.tothcs.interactor.note.events.SaveNoteEvent;
 import com.github.tothcs.interactor.note.events.UpdateNoteEvent;
 import com.github.tothcs.model.Note;
+import com.github.tothcs.network.note.NoteApi;
 import com.github.tothcs.repository.Repository;
 
 import org.greenrobot.eventbus.EventBus;
@@ -19,6 +20,8 @@ public class NotesInteractor {
     Repository repository;
     @Inject
     EventBus bus;
+    @Inject
+    NoteApi noteApi;
 
     public NotesInteractor() {
         NotesApplication.injector.inject(this);
@@ -50,6 +53,7 @@ public class NotesInteractor {
         SaveNoteEvent event = new SaveNoteEvent();
         try {
             repository.saveNote(note);
+            noteApi.addNote(mapNoteToNetworkBean(note)).execute();
             bus.post(event);
         } catch (Exception e) {
             event.setThrowable(e);
@@ -61,6 +65,7 @@ public class NotesInteractor {
         UpdateNoteEvent event = new UpdateNoteEvent();
         try {
             repository.updateNote(note);
+            noteApi.updateNote(mapNoteToNetworkBean(note)).execute();
             bus.post(event);
         } catch (Exception e) {
             event.setThrowable(e);
@@ -72,10 +77,29 @@ public class NotesInteractor {
         RemoveNoteEvent event = new RemoveNoteEvent();
         try {
             repository.removeNote(noteId);
+            noteApi.deleteNote(noteId).execute();
             bus.post(event);
         } catch (Exception e) {
             event.setThrowable(e);
             bus.post(event);
         }
+    }
+
+    private com.github.tothcs.network.note.Note mapNoteToNetworkBean(Note note) {
+        com.github.tothcs.network.note.Note networkNote = new com.github.tothcs.network.note.Note();
+        networkNote.setId(note.getId());
+        networkNote.setTitle(note.getTitle());
+        networkNote.setDescription(note.getDescription());
+        switch(note.getCategory()) {
+            case PERSONAL: networkNote.setCategory(com.github.tothcs.network.note.Note.CategoryEnum.PERSONAL); break;
+            case STUDY: networkNote.setCategory(com.github.tothcs.network.note.Note.CategoryEnum.STUDY); break;
+            case WORK: networkNote.setCategory(com.github.tothcs.network.note.Note.CategoryEnum.WORK);
+        }
+        switch(note.getPriority()) {
+            case LOW: networkNote.setPriority(com.github.tothcs.network.note.Note.PriorityEnum.LOW); break;
+            case NORMAL: networkNote.setPriority(com.github.tothcs.network.note.Note.PriorityEnum.NORMAL); break;
+            case HIGH: networkNote.setPriority(com.github.tothcs.network.note.Note.PriorityEnum.HIGH);
+        }
+        return networkNote;
     }
 }

@@ -2,6 +2,7 @@ package com.github.tothcs;
 
 import com.github.tothcs.interactor.InteractorModule;
 import com.github.tothcs.interactor.note.NotesInteractor;
+import com.github.tothcs.mock.MockNetworkModule;
 import com.github.tothcs.network.NetworkModule;
 import com.github.tothcs.repository.RepositoryModule;
 import com.github.tothcs.ui.UIModule;
@@ -18,7 +19,7 @@ import javax.inject.Singleton;
 import dagger.Component;
 
 @Singleton
-@Component(modules = {UIModule.class, InteractorModule.class, RepositoryModule.class, NetworkModule.class})
+@Component(modules = {UIModule.class, InteractorModule.class, RepositoryModule.class, MockNetworkModule.class})
 public interface NotesApplicationComponent {
     void inject(NoteListActivity noteListActivity);
 

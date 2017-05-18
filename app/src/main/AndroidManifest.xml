@@ -23,4 +23,6 @@
         <meta-data android:name="QUERY_LOG" android:value="true" />
         <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="com.github.tothcs.model" />
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>
