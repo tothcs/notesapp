@@ -22,7 +22,11 @@
         <meta-data android:name="VERSION" android:value="2" />
         <meta-data android:name="QUERY_LOG" android:value="true" />
         <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="com.github.tothcs.model" />
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="b5ab8c710f7c417df987956e0db41fc60943dfa3" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 </manifest>

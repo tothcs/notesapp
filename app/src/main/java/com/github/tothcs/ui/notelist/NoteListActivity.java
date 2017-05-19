@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.github.tothcs.NotesApplication;
 import com.github.tothcs.R;
 import com.github.tothcs.model.Note;
@@ -14,6 +15,8 @@ import com.github.tothcs.ui.addormodifynote.AddOrModifyNoteActivity;
 import com.github.tothcs.ui.events.NoteItemAction;
 import com.github.tothcs.ui.events.NoteItemActionEvent;
 import com.github.tothcs.ui.notedetails.NoteDetailsActivity;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -26,6 +29,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.fabric.sdk.android.Fabric;
 
 public class NoteListActivity extends AppCompatActivity implements NoteListScreen {
 
@@ -42,6 +46,8 @@ public class NoteListActivity extends AppCompatActivity implements NoteListScree
 
     private static final String IS_MODIFY_NOTE = "IS_MODIFY";
 
+    private Tracker mTracker;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +59,10 @@ public class NoteListActivity extends AppCompatActivity implements NoteListScree
 
         noteListRecyclerViewAdapter = new NoteListRecyclerViewAdapter(null, false);
         recyclerView.setAdapter(noteListRecyclerViewAdapter);
+
+        // Obtain the shared Tracker instance.
+        NotesApplication application = (NotesApplication) getApplication();
+        mTracker = application.getDefaultTracker();
     }
 
     @Override
@@ -65,12 +75,19 @@ public class NoteListActivity extends AppCompatActivity implements NoteListScree
     protected void onStart() {
         super.onStart();
         noteListPresenter.attachScreen(this);
+        mTracker.setScreenName("NoteListActivity");
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         noteListPresenter.detachScreen();
+    }
+
+    @OnClick(R.id.force_crash_button)
+    public void forceCrash() {
+        throw new RuntimeException();
     }
 
     @OnClick(R.id.create_new_note_fab)

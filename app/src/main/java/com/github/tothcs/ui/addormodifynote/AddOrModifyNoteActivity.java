@@ -15,6 +15,8 @@ import com.github.tothcs.model.Category;
 import com.github.tothcs.model.Note;
 import com.github.tothcs.model.Priority;
 import com.github.tothcs.ui.notelist.NoteListActivity;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 import javax.inject.Inject;
 
@@ -39,6 +41,8 @@ public class AddOrModifyNoteActivity extends AppCompatActivity implements AddOrM
     @Inject
     AddOrModifyNotePresenter addOrModifyNotePresenter;
 
+    private Tracker mTracker;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +53,10 @@ public class AddOrModifyNoteActivity extends AppCompatActivity implements AddOrM
 
         categorySpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, Category.values()));
         prioritySpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, Priority.values()));
+
+        // Obtain the shared Tracker instance.
+        NotesApplication application = (NotesApplication) getApplication();
+        mTracker = application.getDefaultTracker();
     }
 
     @Override
@@ -59,6 +67,8 @@ public class AddOrModifyNoteActivity extends AppCompatActivity implements AddOrM
         if (bundle.getBoolean("IS_MODIFY")) {
             addOrModifyNotePresenter.getNoteById(bundle.getLong("NOTE_ID"));
         }
+        mTracker.setScreenName("AddOrModifyNoteActivity");
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     @Override

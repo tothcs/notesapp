@@ -1,0 +1,38 @@
+{
+  "project_info": {
+    "project_number": "561099214250",
+    "project_id": "notesapp"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:561099214250:android:592315b0a6181968",
+        "android_client_info": {
+          "package_name": "com.github.tothc"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAT3Mm_KHcl3PTlJe10TUZsQ2spo6w7s84"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 2,
+          "analytics_property": {
+            "tracking_id": "UA-99483197-1"
+          }
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

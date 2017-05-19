@@ -9,6 +9,8 @@ import android.widget.Toast;
 import com.github.tothcs.NotesApplication;
 import com.github.tothcs.R;
 import com.github.tothcs.model.Note;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 import javax.inject.Inject;
 
@@ -29,6 +31,8 @@ public class NoteDetailsActivity extends AppCompatActivity implements NoteDetail
     @BindView(R.id.note_details_description)
     TextView noteDescription;
 
+    private Tracker mTracker;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +40,10 @@ public class NoteDetailsActivity extends AppCompatActivity implements NoteDetail
 
         NotesApplication.injector.inject(this);
         ButterKnife.bind(this);
+
+        // Obtain the shared Tracker instance.
+        NotesApplication application = (NotesApplication) getApplication();
+        mTracker = application.getDefaultTracker();
     }
 
     @Override
@@ -44,6 +52,9 @@ public class NoteDetailsActivity extends AppCompatActivity implements NoteDetail
         noteDetailsPresenter.attachScreen(this);
         Bundle bundle = getIntent().getExtras();
         noteDetailsPresenter.getNoteById(bundle.getLong("NOTE_ID"));
+
+        mTracker.setScreenName("NoteDetailsActivity");
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     @Override
